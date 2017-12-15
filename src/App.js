@@ -71,46 +71,63 @@ class App extends Component {
     let { navDrawerOpen } = this.state;
     const paddingLeftDrawerOpen = '256px';
     const style = {
+      backgroundColor:'rgb(48, 48, 48)',
+          minHeight: '100vh',
+      paddingRight: 0,
+     paddingLeft: 0 ,
       'margin-left': navDrawerOpen ? paddingLeftDrawerOpen : '0px'
     };
-
+    const pageCont = {
+        backgroundColor:'#fff',
+        marginTop:'5vh',
+        marginBottom: '5vh'
+    }
     return (
 
         <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+          <div style={style} class="container-fluid">
+            <AppBar
+              titleStyle={{textAlign: "center"}}
+              onClick={ this.handleChangeRequestNavDrawer }
+            />
           <Router>
-            <div style={style}>
-              <Drawer
-                docked={true}
-                open={navDrawerOpen}>
-                <AppBar   titleStyle={{flex:'0'}} showMenuIconButton={false}>
+            <div class="row col-xs-12 around-xs  around-md">
+                <div class="col-xs-9 col-md-9 " style={pageCont}>
+                  <Drawer
+                    docked={true}
+                    open={navDrawerOpen}>
+                    <AppBar   titleStyle={{flex:'0'}} showMenuIconButton={false}>
 
-                  <ListItem
-                    disabled={true}
-                    leftAvatar={<Avatar src={portfolio} />}>
-                    git-srinivas
-                  </ListItem>
+                      <ListItem
+                        disabled={true}
+                        leftAvatar={<Avatar src={portfolio} />}>
+                        git-srinivas
+                      </ListItem>
 
-                </AppBar>
+                    </AppBar>
 
-                <MenuItem
-                  containerElement={<NavLink to="/" />}
-                  leftIcon={<IconHome />}>Home</MenuItem>
-                <MenuItem
-                  containerElement={<NavLink to="/posts"/>}
-                  leftIcon={<Pages />}>Posts</MenuItem>
-                <MenuItem
-                  containerElement={<NavLink to="/author"/>}
-                  leftIcon={<AccountCircle />}>Author</MenuItem>
-              </Drawer>
-              <AppBar
-                titleStyle={{textAlign: "center"}}
-                onClick={ this.handleChangeRequestNavDrawer }
-              />
-              <Route  exact path="/" component={Home}/>
-              <Route   path="/posts" component={Posts}/>
-              <Route   path="/Author" component={Author}/>
+                    <MenuItem
+                      containerElement={<NavLink to="/" />}
+                      leftIcon={<IconHome />}>Home</MenuItem>
+                    <MenuItem
+                      containerElement={<NavLink to="/posts"/>}
+                      leftIcon={<Pages />}>Posts</MenuItem>
+                    <MenuItem
+                      containerElement={<NavLink to="/author"/>}
+                      leftIcon={<AccountCircle />}>Author</MenuItem>
+                  </Drawer>
+
+                  <Route  exact path="/" component={Home}/>
+                  <Route   path="/posts" component={Posts}/>
+                  <Route   path="/Author" component={Author}/>
+                </div>
             </div>
+            {/* <div class="routerContainer">
+
+              </div> */}
           </Router>
+
+          </div>
         </MuiThemeProvider>
 
 
