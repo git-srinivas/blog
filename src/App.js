@@ -45,6 +45,9 @@ import Subheader from 'material-ui/Subheader';
 import AngularPosts from './AngularPosts'
 import NodePosts from './NodePosts'
 import JsPosts from './JsPosts'
+import angularIcon from './assets/angular.png'
+import jsIcon from './assets/js.png'
+import nodeIcon from './assets/nodeJs.png'
 configureAnchors({offset: -90, scrollDuration: 800})
 
 const styleText = {
@@ -149,19 +152,20 @@ class App extends Component {
                           <ListItem
                             key={1}
                             primaryText="Javascript"
-                            leftIcon={<ActionGrade />}
+                            leftIcon={<Avatar src={jsIcon} />}
+
                             containerElement={<NavLink to="/js"/>}
                           />,
                           <ListItem
                             key={2}
                             primaryText="AngularJs"
-                            leftIcon={<ContentSend />}
+                            leftIcon={<Avatar src={angularIcon} />}
                             containerElement={<NavLink to="/angular"/>}
                           />,
                           <ListItem
                             key={3}
                             primaryText="NodeJs"
-                            leftIcon={<ContentInbox />}
+                            leftIcon={<Avatar src={nodeIcon} />}
                             containerElement={<NavLink to="/node"/>}
                           />,
                         ]}
