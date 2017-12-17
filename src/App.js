@@ -5,7 +5,7 @@ import Home from './Home'
 import Posts from './Posts'
 import Author from './Author'
 import portfolio from './assets/portfolio.jpg'
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import  lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
@@ -20,8 +20,6 @@ import { configureAnchors } from 'react-scrollable-anchor'
 import { goToAnchor } from 'react-scrollable-anchor'
 import Drawer from 'material-ui/Drawer';
 import Avatar from 'material-ui/Avatar';
-import List from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import IconHome from 'material-ui/svg-icons/action/home';
 import Pages from 'material-ui/svg-icons/social/pages';
@@ -35,8 +33,18 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom'
+//LIsts
+import {List, ListItem} from 'material-ui/List';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import Subheader from 'material-ui/Subheader';
 
-
+//Posts
+import AngularPosts from './AngularPosts'
+import NodePosts from './NodePosts'
+import JsPosts from './JsPosts'
 configureAnchors({offset: -90, scrollDuration: 800})
 
 const styleText = {
@@ -71,54 +79,105 @@ class App extends Component {
     let { navDrawerOpen } = this.state;
     const paddingLeftDrawerOpen = '256px';
     const style = {
-      backgroundColor:'rgb(48, 48, 48)',
+      // backgroundColor:'rgb(48, 48, 48)',
+      backgroundColor:'#f9fbfb',
           minHeight: '100vh',
       paddingRight: 0,
      paddingLeft: 0 ,
       'margin-left': navDrawerOpen ? paddingLeftDrawerOpen : '0px'
     };
     const pageCont = {
-        backgroundColor:'#fff',
-        marginTop:'5vh',
+        backgroundColor:'#f9fbfb',
+        marginTop:'15vh',
         marginBottom: '5vh'
     }
     return (
 
-        <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
           <div style={style} class="container-fluid">
             <AppBar
               titleStyle={{textAlign: "center"}}
+              style={{position:'fixed'}}
+              // title="Learning Awsome"
               onClick={ this.handleChangeRequestNavDrawer }
             />
-          <Router>
-            <div class="row col-xs-12 around-xs  around-md">
+            <Router>
+              <div class="row col-xs-12 around-xs  around-md" >
                 <div class="col-xs-9 col-md-9 " style={pageCont}>
                   <Drawer
                     docked={true}
                     open={navDrawerOpen}>
-                    <AppBar   titleStyle={{flex:'0'}} showMenuIconButton={false}>
+                    <AppBar
+                      title="Learning Awsome"
+                      showMenuIconButton={false}
+                      titleStyle={{fontWeight:300}}>
+                      {/* titleStyle={{flex:'0'}}  */}
 
-                      <ListItem
+                      {/* <ListItem
                         disabled={true}
-                        leftAvatar={<Avatar src={portfolio} />}>
+                        leftAvatar={<Avatar src={portfolio} />}
+                        >
                         git-srinivas
-                      </ListItem>
+                      </ListItem> */}
 
                     </AppBar>
 
-                    <MenuItem
+                    {/* <MenuItem
                       containerElement={<NavLink to="/" />}
                       leftIcon={<IconHome />}>Home</MenuItem>
-                    <MenuItem
+                      <MenuItem
                       containerElement={<NavLink to="/posts"/>}
                       leftIcon={<Pages />}>Posts</MenuItem>
-                    <MenuItem
+                      <MenuItem
                       containerElement={<NavLink to="/author"/>}
-                      leftIcon={<AccountCircle />}>Author</MenuItem>
+                    leftIcon={<AccountCircle />}>Author</MenuItem> */}
+                    <List>
+                      <Subheader>Nested List Items</Subheader>
+                      <ListItem
+                        primaryText="Home"
+                        leftIcon={<IconHome />}
+                        containerElement={<NavLink to="/" />}
+                      />
+
+                      <ListItem
+                        primaryText="Posts"
+                        leftIcon={<Pages />}
+                        // containerElement={<NavLink to="/posts"/>}
+                        initiallyOpen={true}
+                        primaryTogglesNestedList={true}
+                        nestedItems={[
+                          <ListItem
+                            key={1}
+                            primaryText="Javascript"
+                            leftIcon={<ActionGrade />}
+                            containerElement={<NavLink to="/js"/>}
+                          />,
+                          <ListItem
+                            key={2}
+                            primaryText="AngularJs"
+                            leftIcon={<ContentSend />}
+                            containerElement={<NavLink to="/angular"/>}
+                          />,
+                          <ListItem
+                            key={3}
+                            primaryText="NodeJs"
+                            leftIcon={<ContentInbox />}
+                            containerElement={<NavLink to="/node"/>}
+                          />,
+                        ]}
+                      />
+                      <ListItem
+                        primaryText="Author"
+                        leftIcon={<AccountCircle />}
+                        containerElement={<NavLink to="/author"/>}
+                      />
+                    </List>
                   </Drawer>
 
                   <Route  exact path="/" component={Home}/>
-                  <Route   path="/posts" component={Posts}/>
+                  <Route   path="/angular" component={AngularPosts}/>
+                  <Route   path="/node" component={NodePosts}/>
+                  <Route   path="/js" component={JsPosts}/>
                   <Route   path="/Author" component={Author}/>
                 </div>
             </div>

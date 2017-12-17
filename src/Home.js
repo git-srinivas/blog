@@ -4,11 +4,13 @@ import React, { Component } from 'react';
 class Home extends Component {
   constructor(){
     super();
-
+    this.state = {
+      pageTitle:'Home'
+    }
   }
   render() {
     return (
-      <div>Home</div>
+      <div><h1></h1></div>
     );
   }
 }

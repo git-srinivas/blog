@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PostCard from './components/Card'
 
-class Posts extends Component {
+class NodePosts extends Component {
   constructor(){
     super();
 
   }
 
   render() {
-    const cardPosts = [{'title':'post1'},{'title':'post2'},{'title':'post3'}];
+    const cardPosts = [{'title':'NodeJspost1'},{'title':'NodeJspost2'},{'title':'NodeJspost3'}];
     return (
 
       cardPosts.map(function(card, index){
@@ -18,4 +18,4 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+export default NodePosts;
